@@ -19,6 +19,7 @@ ARG_DEBUG_MODE = "--debug"
 ARG_ONLY_SETUP = "--only-setup"
 ARG_BUG_ID = "--bug-id="
 ARG_START_ID = "--start-id="
+ARG_SKIP_LIST = "--skip-list="
 
 CONF_DATA_PATH = "/data"
 CONF_TOOL_PATH = "/patchweave"
@@ -28,6 +29,7 @@ CONF_DEBUG = False
 CONF_BUG_ID = None
 CONF_START_ID = None
 CONF_SETUP_ONLY = False
+CONF_SKIP_LIST = []
 
 FILE_META_DATA = "meta-data"
 FILE_ERROR_LOG = "error-log"
@@ -89,7 +91,7 @@ def load_experiment():
 
 def read_arg():
     global CONF_DATA_PATH, CONF_TOOL_NAME, CONF_TOOL_PARAMS, CONF_START_ID
-    global CONF_TOOL_PATH, CONF_DEBUG, CONF_SETUP_ONLY, CONF_BUG_ID
+    global CONF_TOOL_PATH, CONF_DEBUG, CONF_SETUP_ONLY, CONF_BUG_ID, CONF_SKIP_LIST
     print("[DRIVER] Reading configuration values")
     if len(sys.argv) > 1:
         for arg in sys.argv:
@@ -109,6 +111,8 @@ def read_arg():
                 CONF_BUG_ID = int(str(arg).replace(ARG_BUG_ID, ""))
             elif ARG_START_ID in arg:
                 CONF_START_ID = int(str(arg).replace(ARG_START_ID, ""))
+            elif ARG_SKIP_LIST in arg:
+                CONF_SKIP_LIST = str(arg).replace(ARG_SKIP_LIST, "").split(",")
             elif "driver.py" in arg:
                 continue
             else:
@@ -135,6 +139,9 @@ def run():
             index = index + 1
             continue
         if CONF_START_ID and index < CONF_START_ID:
+            index = index + 1
+            continue
+        if CONF_SKIP_LIST and str(index) in CONF_SKIP_LIST:
             index = index + 1
             continue
         CONF_TOOL_PARAMS = ""
