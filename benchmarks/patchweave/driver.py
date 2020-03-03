@@ -18,9 +18,9 @@ ARG_TOOL_PARAMS = "--tool-param="
 ARG_DEBUG_MODE = "--debug"
 
 CONF_DATA_PATH = ""
-CONF_TOOL_PATH = ""
+CONF_TOOL_PATH = "/patchweave"
 CONF_TOOL_PARAMS = ""
-CONF_TOOL_NAME = ""
+CONF_TOOL_NAME = "python3 PatchWeave.py"
 CONF_DEBUG = False
 
 FILE_META_DATA = "meta-data"
@@ -114,6 +114,7 @@ def run():
     create_directories()
     index = 1
     for experiment_item in EXPERIMENT_ITEMS:
+        CONF_TOOL_PARAMS = ""
         experiment_name = "Experiment-" + str(index) + "\n-----------------------------"
         print(experiment_name)
         bug_name = str(experiment_item[KEY_BUG_NAME])
