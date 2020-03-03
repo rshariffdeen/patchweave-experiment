@@ -17,12 +17,16 @@ ARG_TOOL_NAME = "--tool-name="
 ARG_TOOL_PARAMS = "--tool-param="
 ARG_DEBUG_MODE = "--debug"
 ARG_ONLY_SETUP = "--only-setup"
+ARG_BUG_ID = "--bug-id"
+ARG_START_ID = "--start-id"
 
 CONF_DATA_PATH = "/data"
 CONF_TOOL_PATH = "/patchweave"
 CONF_TOOL_PARAMS = ""
 CONF_TOOL_NAME = "python PatchWeave.py"
 CONF_DEBUG = False
+CONF_BUG_ID = None
+CONF_START_ID = None
 CONF_SETUP_ONLY = False
 
 FILE_META_DATA = "meta-data"
@@ -84,8 +88,8 @@ def load_experiment():
 
 
 def read_arg():
-    global CONF_DATA_PATH, CONF_TOOL_NAME, CONF_TOOL_PARAMS
-    global CONF_TOOL_PATH, CONF_DEBUG, CONF_SETUP_ONLY
+    global CONF_DATA_PATH, CONF_TOOL_NAME, CONF_TOOL_PARAMS, CONF_START_ID
+    global CONF_TOOL_PATH, CONF_DEBUG, CONF_SETUP_ONLY, CONF_BUG_ID
     print("[DRIVER] Reading configuration values")
     if len(sys.argv) > 1:
         for arg in sys.argv:
@@ -101,6 +105,10 @@ def read_arg():
                 CONF_DEBUG = True
             elif ARG_ONLY_SETUP in arg:
                 CONF_SETUP_ONLY = True
+            elif ARG_BUG_ID in arg:
+                CONF_BUG_ID = int(str(arg).replace(ARG_BUG_ID, ""))
+            elif ARG_START_ID in arg:
+                CONF_START_ID = int(str(arg).replace(ARG_START_ID, ""))
             elif "driver.py" in arg:
                 continue
             else:
@@ -123,6 +131,10 @@ def run():
     create_directories()
     index = 1
     for experiment_item in EXPERIMENT_ITEMS:
+        if CONF_BUG_ID and index != CONF_BUG_ID:
+            continue
+        if CONF_START_ID and index < CONF_START_ID:
+            continue
         CONF_TOOL_PARAMS = ""
         experiment_name = "Experiment-" + str(index) + "\n-----------------------------"
         print(experiment_name)
