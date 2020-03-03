@@ -20,10 +20,17 @@ cp -rf $pa $pb
 cp -rf $pa $pc
 cd $pa
 git checkout $pa_commit
+sed '168d' src/libjasper/include/jasper/jas_config.h > t
+mv t src/libjasper/include/jasper/jas_config.h
+git add src/libjasper/include/jasper/jas_config.h
+git commit -m 'remove redundant definition of uint'
 
 cd ../$pb
 git checkout $pb_commit
-
+sed '168d' src/libjasper/include/jasper/jas_config.h > t
+mv t src/libjasper/include/jasper/jas_config.h
+git add src/libjasper/include/jasper/jas_config.h
+git commit -m 'remove redundant definition of uint'
 
 cd ../$pc
 git checkout $pc_commit
