@@ -96,8 +96,10 @@ def read_arg():
                 CONF_TOOL_PARAMS = str(arg).replace(ARG_TOOL_PARAMS, "")
             elif ARG_DEBUG_MODE in arg:
                 CONF_DEBUG = True
-
+            elif "driver.py" in arg:
+                continue
             else:
+                print("Unknown option: " + str(arg))
                 print("Usage: python driver [OPTIONS] ")
                 print("Options are:")
                 print("\t" + ARG_DATA_PATH + "\t| " + "directory for experiments")
