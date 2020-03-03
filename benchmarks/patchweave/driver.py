@@ -38,10 +38,12 @@ EXPERIMENT_ITEMS = list()
 
 
 def create_directories():
-    create_command = "mkdir " + DIR_LOGS
-    execute_command(create_command)
-    copy_command = "cp -rf " + DIR_POC + " " + CONF_DATA_PATH
-    execute_command(copy_command)
+    if not os.path.isdir(DIR_LOGS):
+        create_command = "mkdir " + DIR_LOGS
+        execute_command(create_command)
+    if not os.path.isdir(CONF_DATA_PATH + "/" + "exploits"):
+        copy_command = "cp -rf " + DIR_POC + " " + CONF_DATA_PATH
+        execute_command(copy_command)
 
 
 def execute_command(command):
