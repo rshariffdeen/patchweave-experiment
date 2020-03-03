@@ -165,7 +165,7 @@
   {
     "category":"backporting",
     "donor":"jasper",
-    "bug_name":"int-overflow",
+    "bug_name":"int-overflow-1",
     "poc_path":"/poc/jasper/CVE-2016-9387.jp2",
     "cve_id":"CVE-2016-9387"
   },
@@ -210,5 +210,37 @@
     "bug_name":"memory-error",
     "poc_path":"/poc/libzip/CVE-2017-14107.zip",
     "cve_id":"CVE-2017-14107"
+  },
+
+   {
+    "category":"backporting",
+    "donor":"jasper",
+    "bug_name":"null-ptr-1",
+    "poc_path":"/poc/jasper/CVE-2016-10248.jp2",
+    "cve_id":"CVE-2016-10248"
+  },
+
+  {
+    "category":"backporting",
+    "donor":"jasper",
+    "bug_name":"null-ptr-2",
+    "poc_path":"/poc/jasper/CVE-2017-6850.jp2",
+    "cve_id":"CVE-2017-6850"
+  },
+
+   {
+    "category":"backporting",
+    "donor":"jasper",
+    "bug_name":"int-overflow-2",
+    "poc_path":"/poc/jasper/CVE-2016-9557.jp2",
+    "cve_id":"CVE-2016-9557"
+  },
+
+   {
+    "category":"backporting",
+    "donor":"jasper",
+    "bug_name":"null-ptr-3",
+    "poc_path":"/poc/jasper/CVE-2016-8884.bmp",
+    "cve_id":"CVE-2016-8884"
   }
 ]
