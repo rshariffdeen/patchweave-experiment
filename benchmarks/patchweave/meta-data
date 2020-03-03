@@ -242,7 +242,7 @@
     "bug_name":"null-ptr-3",
     "poc_path":"/poc/jasper/CVE-2016-8884.bmp",
     "cve_id":"CVE-2016-8884"
-  }
+  },
 
     {
     "category":"backporting",
@@ -250,7 +250,7 @@
     "bug_name":"memory-allocation",
     "poc_path":"/poc/openjpeg/CVE-2017-12982.bmp",
     "cve_id":"CVE-2017-12982"
-  }
+  },
 
     {
     "category":"backporting",
@@ -258,7 +258,7 @@
     "bug_name":"memory-write",
     "poc_path":"/poc/openjpeg/CVE-2017-14040.tga",
     "cve_id":"CVE-2017-14040"
-  }
+  },
 
     {
     "category":"backporting",
@@ -266,7 +266,7 @@
     "bug_name":"heap-overflow-1",
     "poc_path":"/poc/openjpeg/CVE-2017-14041.pgx",
     "cve_id":"CVE-2017-14041"
-  }
+  },
 
    {
     "category":"backporting",
@@ -274,7 +274,7 @@
     "bug_name":"heap-overflow-2",
     "poc_path":"/poc/openjpeg/CVE-2017-14152.tga",
     "cve_id":"CVE-2017-14152"
-  }
+  },
 
   {
     "category":"backporting",
