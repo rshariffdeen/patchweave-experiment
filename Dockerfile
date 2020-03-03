@@ -8,4 +8,4 @@ RUN apt install -y \
     flex \
     libfreetype6-dev
 
-COPY benchmarks /data
+COPY benchmarks /patchweave/experiment
