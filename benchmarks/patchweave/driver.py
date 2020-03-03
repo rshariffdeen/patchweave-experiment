@@ -20,7 +20,7 @@ ARG_DEBUG_MODE = "--debug"
 CONF_DATA_PATH = "/data"
 CONF_TOOL_PATH = "/patchweave"
 CONF_TOOL_PARAMS = ""
-CONF_TOOL_NAME = "python3 PatchWeave.py"
+CONF_TOOL_NAME = "python PatchWeave.py"
 CONF_DEBUG = False
 
 FILE_META_DATA = "meta-data"
