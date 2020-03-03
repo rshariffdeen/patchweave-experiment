@@ -138,7 +138,8 @@ def run():
         print("\t[META-DATA] category: " + category)
         print("\t[META-DATA] project: " + directory_name)
         print("\t[META-DATA] bug ID: " + bug_name)
-        setup(script_path, script_name, conf_file_path, deployed_conf_path)
+        if not os.path.isfile(deployed_conf_path):
+            setup(script_path, script_name, conf_file_path, deployed_conf_path)
         evaluate(deployed_conf_path, bug_name)
         index = index + 1
 
