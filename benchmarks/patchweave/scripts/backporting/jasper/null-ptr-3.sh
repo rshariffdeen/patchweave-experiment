@@ -1,15 +1,15 @@
-bug_id=int-overflow
+bug_id=null-ptr-3
 project_name=jasper
 dir_name=$1/backport/$project_name/$bug_id
 
 
 project_url=https://github.com/mdadams/jasper.git
-pa=$project_name-1.900.12
-pb=$project_name-1.900.13
+pa=$project_name-1.900.8
+pb=$project_name-1.900.9
 pc=$project_name-1.900.2
 
-pa_commit=b9be3d9
-pb_commit=d91198a
+pa_commit=cfa945c
+pb_commit=5d66894d
 pc_commit=version-1.900.2
 
 
