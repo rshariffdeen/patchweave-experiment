@@ -17,8 +17,8 @@ ARG_TOOL_NAME = "--tool-name="
 ARG_TOOL_PARAMS = "--tool-param="
 ARG_DEBUG_MODE = "--debug"
 ARG_ONLY_SETUP = "--only-setup"
-ARG_BUG_ID = "--bug-id"
-ARG_START_ID = "--start-id"
+ARG_BUG_ID = "--bug-id="
+ARG_START_ID = "--start-id="
 
 CONF_DATA_PATH = "/data"
 CONF_TOOL_PATH = "/patchweave"
@@ -132,8 +132,10 @@ def run():
     index = 1
     for experiment_item in EXPERIMENT_ITEMS:
         if CONF_BUG_ID and index != CONF_BUG_ID:
+            index = index + 1
             continue
         if CONF_START_ID and index < CONF_START_ID:
+            index = index + 1
             continue
         CONF_TOOL_PARAMS = ""
         experiment_name = "Experiment-" + str(index) + "\n-----------------------------"
