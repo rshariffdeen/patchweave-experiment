@@ -282,5 +282,45 @@
     "bug_name":"heap-overflow-3",
     "poc_path":"/poc/openjpeg/CVE-2017-14151.bmp",
     "cve_id":"CVE-2017-14151"
+  },
+
+  {
+    "category":"backporting",
+    "donor":"libming",
+    "bug_name":"null-ptr",
+    "poc_path":"/poc/libming/CCVE-2016-9828.swf",
+    "cve_id":"CVE-2016-9828"
+  },
+
+  {
+    "category":"backporting",
+    "donor":"libming",
+    "bug_name":"buffer-overflow-1",
+    "poc_path":"/poc/libming/CVE-2016-9827.swf",
+    "cve_id":"CVE-2016-9827"
+  },
+
+  {
+    "category":"backporting",
+    "donor":"libming",
+    "bug_name":"buffer-overflow-2",
+    "poc_path":"/poc/libming/CVE-2016-9831.swf",
+    "cve_id":"CVE-2016-9831"
+  },
+
+  {
+    "category":"backporting",
+    "donor":"libming",
+    "bug_name":"buffer-overflow-3",
+    "poc_path":"/poc/libming/CVE-2016-9829.swf",
+    "cve_id":"CVE-2016-9829"
+  },
+
+  {
+    "category":"backporting",
+    "donor":"libming",
+    "bug_name":"buffer-overflow-4",
+    "poc_path":"/poc/libming/CVE-2016-9264.swf",
+    "cve_id":"CVE-2016-9264"
   }
 ]
