@@ -1,4 +1,4 @@
-bug_id=div-zero
+bug_id=buffer-overflow-1
 project_name=libming
 dir_name=$1/backport/$project_name/$bug_id
 
