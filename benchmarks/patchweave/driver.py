@@ -95,15 +95,15 @@ def read_arg():
             elif ARG_DEBUG_MODE in arg:
                 CONF_DEBUG = True
 
-    else:
-        print("Usage: python driver [OPTIONS] ")
-        print("Options are:")
-        print("\t" + ARG_DATA_PATH + "\t| " + "directory for experiments")
-        print("\t" + ARG_TOOL_NAME + "\t| " + "name of the tool")
-        print("\t" + ARG_TOOL_PATH + "\t| " + "path of the tool")
-        print("\t" + ARG_TOOL_PARAMS + "\t| " + "parameters for the tool")
-        print("\t" + ARG_DEBUG_MODE + "\t| " + "enable debug mode")
-        exit()
+            else:
+                print("Usage: python driver [OPTIONS] ")
+                print("Options are:")
+                print("\t" + ARG_DATA_PATH + "\t| " + "directory for experiments")
+                print("\t" + ARG_TOOL_NAME + "\t| " + "name of the tool")
+                print("\t" + ARG_TOOL_PATH + "\t| " + "path of the tool")
+                print("\t" + ARG_TOOL_PARAMS + "\t| " + "parameters for the tool")
+                print("\t" + ARG_DEBUG_MODE + "\t| " + "enable debug mode")
+                exit()
 
 
 def run():
