@@ -10,7 +10,7 @@ pa_url=https://github.com/uclouvain/openjpeg.git
 
 pa_commit=0b4c3ce
 pb_commit=afb308b9
-pc_commit=version.2.1.1
+pc_commit=v2.1.1
 
 
 
