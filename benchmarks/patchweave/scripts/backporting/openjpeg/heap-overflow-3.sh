@@ -17,7 +17,8 @@ pc_commit=version.2.1.1
 mkdir -p $dir_name
 cd $dir_name
 git clone $pa_url $pa
-cp -rf $pa $pb $pc
+cp -rf $pa $pb
+cp -rf $pa $pc
 
 cd $pa
 git checkout $pa_commit
