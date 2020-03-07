@@ -247,14 +247,6 @@
     {
     "category":"backporting",
     "donor":"openjpeg",
-    "bug_name":"memory-allocation",
-    "poc_path":"/poc/openjpeg/CVE-2017-12982.bmp",
-    "cve_id":"CVE-2017-12982"
-  },
-
-    {
-    "category":"backporting",
-    "donor":"openjpeg",
     "bug_name":"memory-write",
     "poc_path":"/poc/openjpeg/CVE-2017-14040.tga",
     "cve_id":"CVE-2017-14040"
