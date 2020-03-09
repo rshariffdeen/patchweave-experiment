@@ -4,8 +4,10 @@ MAINTAINER Ridwan Shariffdeen <ridwan@comp.nus.edu.sg>
 RUN mkdir /data
 
 RUN apt install -y \
+    autogen \
     bison \
     flex \
-    libfreetype6-dev
+    libfreetype6-dev \
+    pkg-config
 
 COPY benchmarks /patchweave/experiment
