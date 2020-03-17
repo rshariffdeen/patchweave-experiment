@@ -320,16 +320,16 @@
     "category":"backporting",
     "donor":"libsndfile",
     "bug_name":"memory-read-1",
-    "poc_path":"/poc/libsndfile/CVE-2017-8362.flac",
-    "cve_id":"CVE-2017-8362"
+    "poc_path":"/poc/libsndfile/CVE-2017-8361.flac",
+    "cve_id":"CVE-2017-8361"
   },
 
   {
     "category":"backporting",
     "donor":"libsndfile",
     "bug_name":"memory-read-2",
-    "poc_path":"/poc/libsndfile/CVE-2017-7742.flac",
-    "cve_id":"CVE-2016-9264"
+    "poc_path":"/poc/libsndfile/CVE-2017-8363.flac",
+    "cve_id":"CVE-2017-8363"
   }
 
 ]
