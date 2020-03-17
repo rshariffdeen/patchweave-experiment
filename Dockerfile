@@ -3,7 +3,7 @@ MAINTAINER Ridwan Shariffdeen <ridwan@comp.nus.edu.sg>
 
 RUN mkdir /data
 
-RUN apt update && apt install -y \
+RUN apt-get update && apt-get  install -y \
     autogen \
     bison \
     flex \
