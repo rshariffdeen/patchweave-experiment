@@ -20,9 +20,20 @@ cp -rf $pa $pb
 cp -rf $pa $pc
 cd $pa
 git checkout $pa_commit
+python /patchweave/script/format.py $dir_name/$pa
+
+git add *.c
+git commit -m "format style"
+git reset --hard HEAD
 
 cd ../$pb
 git checkout $pb_commit
+python /patchweave/script/format.py $dir_name/$pb
+
+git add *.c
+git commit -m "format style"
+git reset --hard HEAD
+
 
 cd ../$pc
 git checkout $pc_commit
