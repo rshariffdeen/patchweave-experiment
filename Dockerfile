@@ -20,5 +20,5 @@ RUN apt-get update && apt-get  install -y \
     make \
     pkg-config
 
-
+COPY libraries /libraries
 COPY benchmarks /patchweave/experiment

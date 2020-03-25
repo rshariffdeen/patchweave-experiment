@@ -37,6 +37,7 @@ FILE_ERROR_LOG = "error-log"
 
 DIR_MAIN = os.getcwd()
 DIR_LOGS = DIR_MAIN + "/logs"
+DIR_RESULT = DIR_MAIN + "/result"
 DIR_SCRIPT = DIR_MAIN + "/scripts"
 DIR_CONF = DIR_MAIN + "/configuration"
 DIR_POC = DIR_MAIN + "/exploits"
@@ -52,6 +53,9 @@ def create_directories():
     if not os.path.isdir(CONF_DATA_PATH + "/" + "exploits"):
         copy_command = "cp -rf " + DIR_POC + " " + CONF_DATA_PATH
         execute_command(copy_command)
+    if not os.path.isdir(DIR_RESULT):
+        create_command = "mkdir " + DIR_RESULT
+        execute_command(create_command)
 
 
 def execute_command(command):
@@ -71,13 +75,17 @@ def setup(script_path, script_name, conf_path, deploy_conf_path):
     execute_command(copy_command)
 
 
-def evaluate(conf_path, bug_name):
+def evaluate(conf_path, bug_name, bug_id):
     global CONF_TOOL_PARAMS, CONF_TOOL_PATH, CONF_TOOL_NAME, DIR_LOGS
     print("\t[INFO]running evaluation")
     log_path = str(conf_path).replace(".conf", ".log")
     tool_command = "{ cd " + CONF_TOOL_PATH + ";" + CONF_TOOL_NAME + " --conf=" + conf_path + " "+ CONF_TOOL_PARAMS + ";} 2> " + FILE_ERROR_LOG
     execute_command(tool_command)
-    copy_log = "{ cp " + CONF_TOOL_PATH + "/logs/log-latest " + log_path + ";} 2> " + FILE_ERROR_LOG
+    exp_dir = DIR_RESULT + "/" + str(bug_id)
+
+    copy_output = "{ cp -rf " + CONF_TOOL_PATH + "/output/" + bug_name + " " + exp_dir + ";} 2> " + FILE_ERROR_LOG
+    execute_command(copy_output)
+    copy_log = "{ cp " + CONF_TOOL_PATH + "/logs/log-latest " + exp_dir + ";} 2> " + FILE_ERROR_LOG
     execute_command(copy_log)
 
 
@@ -167,7 +175,7 @@ def run():
         if not os.path.isfile(deployed_conf_path):
             setup(script_path, script_name, conf_file_path, deployed_conf_path)
         if not CONF_SETUP_ONLY:
-            evaluate(deployed_conf_path, bug_name)
+            evaluate(deployed_conf_path, bug_name, index)
         index = index + 1
 
 
