@@ -2,16 +2,22 @@ FROM ubuntu:16.04
 ADD prophet-0.1-src.tar.gz /prophet
 RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" >> /etc/apt/sources.list
 RUN echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" >> /etc/apt/sources.list
+# Installing dependencies for Prophet TOOL
 RUN apt-get update && apt-get install -y \
     autoconf \
     automake \
+    bison \
     cmake \
     curl \
+    flex \
     g++ \
+    git \
     libexplain-dev \
     libtool \
+    libtool-bin \
     libtinfo-dev \
     libz-dev \
+    mercurial \
     nano \
     python \
     subversion \
@@ -25,4 +31,7 @@ RUN cd /llvm/llvm-361/build; make -j32; make install
 
 RUN cd /prophet/prophet-gpl;autoreconf -i;
 RUN cd /prophet/prophet-gpl;CC=clang CXX=clang++ ./configure --host=x86_64 --build=x86_64
+RUN sed -i -e '456d' /prophet/prophet-gpl/benchmarks/php-deps/Makefile
+RUN sed -i 's/lighttpd-deps//g' /prophet/prophet-gpl/benchmarks/Makefile
+
 #RUN cd /prophet/prophet-gpl;make CFLAGS='-Wno-error' CXXFLAGS='-Wno-error -fno-rtti' -j64
