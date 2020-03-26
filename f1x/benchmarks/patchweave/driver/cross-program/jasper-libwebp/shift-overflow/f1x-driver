@@ -1,0 +1,3 @@
+./examples/cwebp /test/jasper-libwebp/shift-overflow/$1.jng -o out.webp
+path_poc:/data/exploits/graphicsmagick/CVE-2016-9830.jng
+asan_flag:integer
