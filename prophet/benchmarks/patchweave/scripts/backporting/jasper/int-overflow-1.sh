@@ -15,27 +15,19 @@ pc_commit=version-1.900.2
 
 mkdir -p $dir_name
 cd $dir_name
-git clone $project_url $pa
-cp -rf $pa $pb
-cp -rf $pa $pc
-cd $pa
-git checkout $pa_commit
+git clone $project_url $pc
 
-cd ../$pb
-git checkout $pb_commit
-
-
-cd ../$pc
+cd $pc
 git checkout $pc_commit
 rm aclocal.m4
 git add aclocal.m4
 git commit -m "removing aclocal"
 
-cd $dir_name/$pc;autoreconf -i;./configure
-cd $dir_name/$pc; bear make
-python /patchweave/script/format.py $dir_name/$pc
-
-git add *.c
-git commit -m "format style"
-git reset --hard HEAD
+#cd $dir_name/$pc;autoreconf -i;./configure
+#cd $dir_name/$pc; bear make
+#python /patchweave/script/format.py $dir_name/$pc
+#
+#git add *.c
+#git commit -m "format style"
+#git reset --hard HEAD
 

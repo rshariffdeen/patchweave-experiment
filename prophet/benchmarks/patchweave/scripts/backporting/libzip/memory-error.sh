@@ -14,26 +14,19 @@ pc_commit=rel-1-1-2
 
 mkdir -p $dir_name
 cd $dir_name
-git clone $project_url $pa
-cp -rf $pa $pb
-cp -rf $pa $pc
-cd $pa
-git checkout $pa_commit
+git clone $project_url $pc
 
-cd ../$pb
-git checkout $pb_commit
-
-cd ../$pc
+cd $pc
 git checkout $pc_commit
 
-
-cd $dir_name/$pc;cmake .
-cd $dir_name/$pc; bear make
-rm -rf $dir_name/$pc/CMakeFiles
-
-python /patchweave/script/format.py $dir_name/$pc
-
-git add *.c
-git commit -m "format style"
-git reset --hard HEAD
-
+#
+#cd $dir_name/$pc;cmake .
+#cd $dir_name/$pc; bear make
+#rm -rf $dir_name/$pc/CMakeFiles
+#
+#python /patchweave/script/format.py $dir_name/$pc
+#
+#git add *.c
+#git commit -m "format style"
+#git reset --hard HEAD
+#
