@@ -1,3 +1,4 @@
+#!/bin/bash
 ./src/appl/imginfo -f /tests/cross-program/libtiff-jasper/memory-write-error/$1.bmp
 ret=$?
 if [[ ret -eq 1 ]]
