@@ -33,5 +33,6 @@ RUN cd /prophet/prophet-gpl;autoreconf -i;
 RUN cd /prophet/prophet-gpl;CC=clang CXX=clang++ ./configure --host=x86_64 --build=x86_64
 RUN sed -i -e '456d' /prophet/prophet-gpl/benchmarks/php-deps/Makefile
 RUN sed -i 's/lighttpd-deps//g' /prophet/prophet-gpl/benchmarks/Makefile
-
-#RUN cd /prophet/prophet-gpl;make CFLAGS='-Wno-error' CXXFLAGS='-Wno-error -fno-rtti' -j64
+RUN sed -i 's/benchmarks//g' /prophet/prophet-gpl/Makefile
+RUN sed -i 's/tests//g' /prophet/prophet-gpl/Makefile
+RUN cd /prophet/prophet-gpl;make CFLAGS='-Wno-error' CXXFLAGS='-Wno-error -fno-rtti' -j64
