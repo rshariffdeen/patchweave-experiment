@@ -167,7 +167,7 @@ def run():
             deploy_path = experiment_path + "/" + os.listdir(experiment_path)[0]
             copy_driver = "{ cp " + conf_dir_path + "/* " + deploy_path + ";} 2> " + FILE_ERROR_LOG
             execute_command(copy_driver)
-
+        deploy_path = experiment_path + "/" + os.listdir(experiment_path)[0]
         if not CONF_SETUP_ONLY:
             evaluate(deploy_path)
         index = index + 1
