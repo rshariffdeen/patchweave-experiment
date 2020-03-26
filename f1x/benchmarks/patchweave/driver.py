@@ -165,7 +165,7 @@ def run():
         if not os.path.exists(experiment_path):
             setup_source(script_path, script_name)
             deploy_path = experiment_path + "/" + os.listdir(experiment_path)[0]
-            copy_driver = "{ cp " + conf_dir_path + "/* " + deploy_path + ";} 2> " + FILE_ERROR_LOG
+            copy_driver = "{ chmod +x " + conf_dir_path + "/* ;cp " + conf_dir_path + "/* " + deploy_path + ";} 2> " + FILE_ERROR_LOG
             execute_command(copy_driver)
         deploy_path = experiment_path + "/" + os.listdir(experiment_path)[0]
         if not CONF_SETUP_ONLY:
