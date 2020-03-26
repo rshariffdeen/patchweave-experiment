@@ -36,3 +36,4 @@ RUN sed -i 's/lighttpd-deps//g' /prophet/prophet-gpl/benchmarks/Makefile
 RUN sed -i 's/benchmarks//g' /prophet/prophet-gpl/Makefile
 RUN sed -i 's/tests//g' /prophet/prophet-gpl/Makefile
 RUN cd /prophet/prophet-gpl;make CFLAGS='-Wno-error' CXXFLAGS='-Wno-error -fno-rtti' -j64
+RUN ln -s /prophet/prophet-gpl/src/prophet /usr/bin/prophet
