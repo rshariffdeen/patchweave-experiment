@@ -1,5 +1,6 @@
 FROM ubuntu:16.04
 ADD prophet-0.1-src.tar.gz /prophet
+RUN apt-get install apt-transport-https ca-certificates
 RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" >> /etc/apt/sources.list
 RUN echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" >> /etc/apt/sources.list
 # Installing dependencies for Prophet TOOL
