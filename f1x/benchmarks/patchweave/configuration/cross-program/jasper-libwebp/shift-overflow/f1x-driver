@@ -1,3 +1,9 @@
-./examples/cwebp /test/jasper-libwebp/shift-overflow/$1.jng -o out.webp
-path_poc:/data/exploits/graphicsmagick/CVE-2016-9830.jng
-asan_flag:integer
+#!/bin/bash
+./examples/cwebp -f /tests/cross-program/jasper-libwebp/signed-int-overflow/$1.jng -o out.webp
+ret=$?
+if [[ ret -eq 1 ]]
+then
+   exit 0;
+else
+   exit $ret
+fi;
