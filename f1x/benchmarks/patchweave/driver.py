@@ -40,7 +40,7 @@ DIR_LOGS = DIR_MAIN + "/logs"
 DIR_RESULT = DIR_MAIN + "/result"
 DIR_SCRIPT = DIR_MAIN + "/scripts"
 DIR_CONF = DIR_MAIN + "/configuration"
-DIR_POC = DIR_MAIN + "/exploits"
+DIR_TESTS = DIR_MAIN + "/tests"
 
 
 EXPERIMENT_ITEMS = list()
@@ -51,7 +51,7 @@ def create_directories():
         create_command = "mkdir " + DIR_LOGS
         execute_command(create_command)
     if not os.path.isdir(CONF_DATA_PATH + "/" + "exploits"):
-        copy_command = "cp -rf " + DIR_POC + " " + CONF_DATA_PATH
+        copy_command = "cp -rf " + DIR_TESTS + " /tests"
         execute_command(copy_command)
     if not os.path.isdir(DIR_RESULT):
         create_command = "mkdir " + DIR_RESULT
@@ -153,7 +153,7 @@ def run():
         if category == "cross-program":
             directory_name = str(experiment_item[KEY_DONOR]) + "-" + str(experiment_item[KEY_TARGET])
         script_path = DIR_SCRIPT + "/" + category + "/" + directory_name
-        conf_dir_path = DIR_CONF + "/" + category + "/" + directory_name
+        conf_dir_path = DIR_CONF + "/" + category + "/" + directory_name + "/" + bug_name
         if category == "backporting":
             directory_name = "backport/" + str(experiment_item[KEY_DONOR])
             CONF_TOOL_PARAMS = " --backport "

@@ -1,1 +1,2 @@
-f1x --tests=1 2 --driver=f1x-driver --test-timeout=6000 -v --disable-dteq   -f src/libjasper/jpc/jpc_dec.c --build="make CFLAGS='-Wno-error -Wno-gnu-statement-expression' CXXFLAGS='-Wno-error  -Wno-gnu-statement-expression'" --enable-llvm-cov
+BUGGY_FILE=libopenjpeg/j2k.c
+f1x --tests=1 2 --driver=f1x-driver --test-timeout=6000 -v --disable-dteq   -f $BUGGY_FILE --build="make CFLAGS='-Wno-error -Wno-gnu-statement-expression' CXXFLAGS='-Wno-error  -Wno-gnu-statement-expression'" --enable-llvm-cov
