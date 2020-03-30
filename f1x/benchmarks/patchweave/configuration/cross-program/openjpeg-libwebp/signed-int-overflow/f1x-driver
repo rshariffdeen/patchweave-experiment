@@ -1,5 +1,5 @@
 #!/bin/bash
-./examples/cwebp  /tests/cross-program/openjpeg-libwebp/signed-int-overflow/$1.jp2 -o out.webp 2>t
+./cwebp  /tests/cross-program/openjpeg-libwebp/signed-int-overflow/$1.jp2 -o out.webp 2>t
 ret=$?
 cat t | grep "runtime"
 check=$?
