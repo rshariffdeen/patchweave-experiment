@@ -1,5 +1,9 @@
-./src/appl/imginfo -f /tests/backporting/jasper/$1.jp2
-path_poc:/data/exploits/jasper/CVE-2016-9387.jp2
-build_command_a:make CFLAGS='-ftrapv'
-build_command_c:make CFLAGS='-ftrapv'
-asan_flag:integer
+#!/bin/bash
+./src/appl/imginfo -f /tests/backporting/jasper/int-overflow-1/$1.jp2
+ret=$?
+if [[ ret -eq 1 ]]
+then
+   exit 0;
+else
+   exit $ret
+fi;
