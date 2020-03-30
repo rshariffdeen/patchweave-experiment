@@ -1,5 +1,5 @@
 #!/bin/bash
-./applications/codec/j2k_to_image -i /tests/cross-program/jasper-openjpeg/signed-int-overflow/$1.jp2 -o out.bmp 2>t
+./applications/codec/j2k_to_image -i /tests/cross-program/jasper-openjpeg/unsigned-int-overflow-2/$1.jp2 -o out.bmp 2>t
 ret=$?
 cat t | grep "runtime"
 check=$?
