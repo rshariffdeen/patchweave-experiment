@@ -1,6 +1,8 @@
 sed -i -e "177d" src/lib/openjp2/opj_malloc.h
 sed -i -e "176d" src/lib/openjp2/opj_malloc.h
 sed -i -e "175d" src/lib/openjp2/opj_malloc.h
+export F1X_PROJECT_CXX=clang++
+export F1X_PROJECT_CC=clang
 cmake -DBUILD_SHARED_LIBS=off -DCMAKE_C_COMPILER=f1x-cc -DCMAKE_C_FLAGS='-g -O0 -fsanitize=integer' .
 make clean
 BUGGY_FILE=src/lib/openjp2/j2k.c
