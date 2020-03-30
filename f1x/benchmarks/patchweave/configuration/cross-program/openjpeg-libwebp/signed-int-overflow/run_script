@@ -2,4 +2,4 @@ autoreconf -i
 CC=f1x-cc CXX=f1x-cxx ./configure
 make clean
 BUGGY_FILE=examples/jpegdec.c
-f1x --tests=1 2 --driver=f1x-driver --test-timeout=6000 -v --disable-dteq   -f $BUGGY_FILE --build="make CFLAGS='-Wno-error -Wno-gnu-statement-expression -pthread' CXXFLAGS='-Wno-error  -Wno-gnu-statement-expression -pthread'" --enable-llvm-cov
+f1x --tests=1 2 --driver=f1x-driver --test-timeout=6000 -v --disable-dteq   -f $BUGGY_FILE --build="make CFLAGS='-Wno-error -Wno-gnu-statement-expression -pthread -fsanitize=integer' CXXFLAGS='-Wno-error  -Wno-gnu-statement-expression -pthread -fsanitize=integer'" --enable-llvm-cov
