@@ -3,7 +3,7 @@
 ret=$?
 cat t | grep "runtime"
 check=$?
-if [[ ret -eq 1 ]]
+if [[ ret -eq 255 ]]
 then
    if [[ check -eq 1 ]]
    then

@@ -1,5 +1,5 @@
 autoreconf -i
-CC=f1x-cc CXX=f1x-cxx ./configure
+CC=f1x-cc CXX=f1x-cxx ./configure CFLAGS='-g -O0 -fsanitize=integer'
 make -j32
 cp f1x-driver examples/f1x-driver
 cd examples
