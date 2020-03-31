@@ -1,7 +1,7 @@
 #!/bin/bash
-./cwebp  /tests/cross-program/openjpeg-libwebp/signed-int-overflow/$1.jp2 -o out.webp 2>t
+./cwebp  /tests/cross-program/jasper-libwebp/shift-overflow/$1.jp2 -o out.webp 2>t
 ret=$?
-cat t | grep "runtime"
+cat t | grep "cwebp.c:536:56: runtime error"
 check=$?
 if [[ ret -eq 255 ]]
 then
