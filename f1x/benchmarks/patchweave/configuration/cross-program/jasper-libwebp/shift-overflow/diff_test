@@ -1,7 +1,7 @@
 BUGGY_FILE=examples/cwebp.c
 BINARY_PATH=examples/cwebp
 EXPLOIT="/cwebp  \$POC -o out.webp"
-POC_PATH=/tests/cross-program/jasper-libwebp/shift-overflow/1.jng
+POC_PATH=/tests/cross-program/jasper-libwebp/shift-overflow/1.jp2
 FUZZ_DIR_IN=fuzz_in
 FUZZ_DIR_OUT=fuzz_out
 
