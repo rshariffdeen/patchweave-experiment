@@ -8,9 +8,9 @@ FUZZ_DIR_OUT=fuzz_out
 mkdir {pa,pb}
 git reset --hard HEAD
 autoreconf -i
+./configure CFLAGS='-g -O0 -static'
 make clean
 make clean all
-./configure CFLAGS='-g -O0 -static'
 make CFLAGS='-g -O0 -static' -j32
 cp $BINARY_PATH pa
 mv f1x-*.patch f1x.patch

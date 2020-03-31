@@ -98,7 +98,7 @@ def compare_test_output(output_c, output_d):
 
 def run_exploit(exploit_command, project_path, poc_path, output_file_path, hide_output=False):
     exploit_command = str(exploit_command).replace('$POC', poc_path)
-    exploit_command = "timeout 2m " + project_path + exploit_command + " > " + output_file_path + " 2>&1"
+    exploit_command = "timeout -k 30s 30s  " + project_path + exploit_command + " > " + output_file_path + " 2>&1"
     # print(exploit_command)
     # Print executed command and execute it in console
     program_crashed = False
