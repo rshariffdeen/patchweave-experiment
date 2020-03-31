@@ -1,4 +1,6 @@
 autoreconf -i
+export F1X_PROJECT_CXX=clang++
+export F1X_PROJECT_CC=clang
 CC=f1x-cc CXX=f1x-cxx ./configure CFLAGS='-g -O0 -fsanitize=address'
 make clean
 BUGGY_FILE=src/flac.c
