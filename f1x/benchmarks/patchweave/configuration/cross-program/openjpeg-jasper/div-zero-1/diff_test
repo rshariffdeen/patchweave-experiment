@@ -1,20 +1,21 @@
-BUGGY_FILE=
-BINARY_PATH=
-EXPLOIT=
-POC_PATH=
+BUGGY_FILE=src/libjasper/jpc/jpc_dec.c
+BINARY_PATH=src/appl/imginfo
+EXPLOIT="/imginfo -f \$POC"
+POC_PATH=/tests/cross-program/openjpeg-jasper/div-zero-1/1.j2k
 FUZZ_DIR_IN=fuzz_in
 FUZZ_DIR_OUT=fuzz_out
 
 mkdir {pa,pb}
-make clean all
-autoreconf -i
-./configure
 git reset --hard HEAD
-make -j32
+autoreconf -i
+make clean
+make clean all
+./configure CFLAGS='-g -O0 -static' 
+make CFLAGS='-g -O0 -static' -j32
 cp $BINARY_PATH pa
 mv f1x-*.patch f1x.patch
 patch $BUGGY_FILE < f1x.patch
-make -j32
+make CFLAGS='-g -O0 -static' -j32
 cp $BINARY_PATH pb
 touch diff_fuzz.log
 mkdir {$FUZZ_DIR_IN,$FUZZ_DIR_OUT}
