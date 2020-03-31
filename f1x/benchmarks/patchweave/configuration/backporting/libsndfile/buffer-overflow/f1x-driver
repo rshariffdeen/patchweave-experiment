@@ -1,5 +1,5 @@
 #!/bin/bash
-./programs/sndfile-convert /tests/backporting/libsndfile/buffer-overflow/$1.flac 2>t
+./programs/sndfile-convert /tests/backporting/libsndfile/buffer-overflow/$1.flac out.wav 2>t
 ret=$?
 cat t | grep "AddressSanitizer"
 check=$?
