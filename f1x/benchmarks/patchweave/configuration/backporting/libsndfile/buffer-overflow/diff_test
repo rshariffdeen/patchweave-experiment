@@ -9,7 +9,8 @@ mkdir {pa,pb}
 
 git reset --hard HEAD
 autoreconf -i
-CC=clang ./configure CFLAGS='-g -O0 -fsanitize=address'
+CC=clang CXX=clang++ ./configure CFLAGS='-g -O0 -fsanitize=address' CXXFLAGS='-g -O0 -fsanitize=address'
+make clean
 make clean all -j32
 make -j32
 
