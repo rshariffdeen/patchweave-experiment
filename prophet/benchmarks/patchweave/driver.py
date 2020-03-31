@@ -75,7 +75,7 @@ def setup_source(script_path, script_name):
 def evaluate(deploy_path):
     global CONF_TOOL_PARAMS, CONF_TOOL_PATH, CONF_TOOL_NAME, DIR_LOGS
     print("\t[INFO]running evaluation")
-    tool_command = "cd " + deploy_path + ";" + "bash run_script 1>f1x.log 2>&1 "
+    tool_command = "cd " + deploy_path + ";" + "bash run_script 1>prophet.log 2>&1 "
     execute_command(tool_command)
 
 
@@ -164,8 +164,10 @@ def run():
         print("\t[META-DATA] bug ID: " + bug_name)
         if not os.path.exists(experiment_path):
             setup_source(script_path, script_name)
-            deploy_path = experiment_path + "/" + os.listdir(experiment_path)[0]
-            copy_driver = "{ chmod +x " + conf_dir_path + "/* ;cp " + conf_dir_path + "/* " + deploy_path + ";} 2> " + FILE_ERROR_LOG
+            deploy_path = experiment_path + "/" + "prophet-run"
+            create_deploy_dir = "mkdir " + deploy_path
+            execute_command(create_deploy_dir)
+            copy_driver = "{ cp " + conf_dir_path + "/* " + deploy_path + ";} 2> " + FILE_ERROR_LOG
             execute_command(copy_driver)
         deploy_path = experiment_path + "/" + os.listdir(experiment_path)[0]
         if not CONF_SETUP_ONLY:
