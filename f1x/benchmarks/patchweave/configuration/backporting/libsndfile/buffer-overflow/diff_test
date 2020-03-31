@@ -9,13 +9,13 @@ mkdir {pa,pb}
 
 git reset --hard HEAD
 autoreconf -i
-CC=clang CXX=clang++ ./configure CFLAGS='-g -O0 -fsanitize=address' CXXFLAGS='-g -O0 -fsanitize=address'
+CC=clang CXX=clang++ ./configure CFLAGS='-g -O0 -fsanitize=address -static' CXXFLAGS='-g -O0 -fsanitize=address -static'
 make clean
 make clean all -j32
 make -j32
 
 cp $BINARY_PATH pa
-mv f1x-*.patch f1x.patch
+cp f1x-*.patch f1x.patch
 patch $BUGGY_FILE < f1x.patch
 make -j32
 cp $BINARY_PATH pb
