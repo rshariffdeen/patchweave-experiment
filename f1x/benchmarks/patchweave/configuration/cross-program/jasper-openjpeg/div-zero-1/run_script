@@ -1,8 +1,6 @@
 sed -i -e "157d" libopenjpeg/opj_malloc.h
 sed -i -e "156d" libopenjpeg/opj_malloc.h
 sed -i -e "155d" libopenjpeg/opj_malloc.h
-git add libopenjpeg/opj_malloc.h
-git commit -m 'remove poison free'
 autoreconf -i
 CC=f1x-cc CXX=f1x-cxx ./configure
 make clean
