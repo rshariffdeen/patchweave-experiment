@@ -1,0 +1,9 @@
+#!/bin/bash
+./bin/opj_decompress -i /tests/cross-program/jasper-openjpeg/heap-overflow/$1.j2k -o out.pgm
+ret=$?
+if [[ ret -eq 1 ]]
+then
+   exit 0;
+else
+   exit $ret
+fi;

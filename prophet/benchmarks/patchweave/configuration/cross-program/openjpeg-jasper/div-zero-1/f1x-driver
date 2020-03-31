@@ -1,0 +1,9 @@
+#!/bin/bash
+./src/appl/imginfo -f /tests/cross-program/openjpeg-jasper/div-zero-1/$1.j2k
+ret=$?
+if [[ ret -eq 1 ]]
+then
+   exit 0;
+else
+   exit $ret
+fi;

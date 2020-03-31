@@ -1,0 +1,22 @@
+BUGGY_FILE=libopenjpeg/jp2.c
+BINARY_PATH=applications/codec/j2k_to_image
+EXPLOIT="/j2k_to_image -i \$POC -o out.bmp"
+POC_PATH=/tests/cross-program/jasper-openjpeg/signed-int-overflow/1.jp2
+FUZZ_DIR_IN=fuzz_in
+FUZZ_DIR_OUT=fuzz_out
+
+mkdir {pa,pb}
+autoreconf -i
+./configure CFLAGS='-g -O0 -static -ftrapv'
+make clean
+make clean all
+git reset --hard HEAD
+make -j32
+cp $BINARY_PATH pa
+mv f1x-*.patch f1x.patch
+patch $BUGGY_FILE < f1x.patch
+make -j32
+cp $BINARY_PATH pb
+touch diff_fuzz.log
+mkdir {$FUZZ_DIR_IN,$FUZZ_DIR_OUT}
+python3 /experiment/patchweave/scripts/diff_fuzz.py $POC_PATH $FUZZ_DIR_IN $FUZZ_DIR_OUT pa pb $EXPLOIT

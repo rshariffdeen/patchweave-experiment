@@ -1,0 +1,16 @@
+#!/bin/bash
+./cli/wavpack /tests/cross-program/libsndfile-wavpack/shift-overflow/$1.wav -o output 2>t
+ret=$?
+cat t | grep "runtime"
+check=$?
+if [[ ret -eq 1 ]]
+then
+   if [[ check -eq 1 ]]
+   then
+       exit 0;
+   else
+       exit 1;
+   fi
+else
+   exit $ret
+fi;

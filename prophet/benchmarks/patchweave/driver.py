@@ -40,7 +40,7 @@ DIR_LOGS = DIR_MAIN + "/logs"
 DIR_RESULT = DIR_MAIN + "/result"
 DIR_SCRIPT = DIR_MAIN + "/scripts"
 DIR_CONF = DIR_MAIN + "/configuration"
-DIR_POC = DIR_MAIN + "/exploits"
+DIR_TESTS = DIR_MAIN + "/tests"
 
 
 EXPERIMENT_ITEMS = list()
@@ -51,7 +51,7 @@ def create_directories():
         create_command = "mkdir " + DIR_LOGS
         execute_command(create_command)
     if not os.path.isdir(CONF_DATA_PATH + "/" + "exploits"):
-        copy_command = "cp -rf " + DIR_POC + " " + CONF_DATA_PATH
+        copy_command = "cp -rf " + DIR_TESTS + " /tests"
         execute_command(copy_command)
     if not os.path.isdir(DIR_RESULT):
         create_command = "mkdir " + DIR_RESULT
@@ -65,28 +65,18 @@ def execute_command(command):
     (output, error) = process.communicate()
 
 
-def setup(script_path, script_name, conf_path, deploy_conf_path):
+def setup_source(script_path, script_name):
     global FILE_ERROR_LOG, CONF_DATA_PATH
     print("\t[INFO] running script for setup")
     script_command = "{ cd " + script_path + "; bash " + script_name + " " + CONF_DATA_PATH + ";} 2> " + FILE_ERROR_LOG
     execute_command(script_command)
-    print("\t[INFO] copying configuration")
-    copy_command = "{ cp " + conf_path + " " + deploy_conf_path + ";} 2> " + FILE_ERROR_LOG
-    execute_command(copy_command)
 
 
-def evaluate(conf_path, bug_name, bug_id):
+def evaluate(deploy_path):
     global CONF_TOOL_PARAMS, CONF_TOOL_PATH, CONF_TOOL_NAME, DIR_LOGS
     print("\t[INFO]running evaluation")
-    log_path = str(conf_path).replace(".conf", ".log")
-    tool_command = "{ cd " + CONF_TOOL_PATH + ";" + CONF_TOOL_NAME + " --conf=" + conf_path + " "+ CONF_TOOL_PARAMS + ";} 2> " + FILE_ERROR_LOG
+    tool_command = "cd " + deploy_path + ";" + "bash run_script 1>f1x.log 2>&1 "
     execute_command(tool_command)
-    exp_dir = DIR_RESULT + "/" + str(bug_id)
-
-    copy_output = "{ cp -rf " + CONF_TOOL_PATH + "/output/" + bug_name + " " + exp_dir + ";} 2> " + FILE_ERROR_LOG
-    execute_command(copy_output)
-    copy_log = "{ cp " + CONF_TOOL_PATH + "/logs/log-latest " + exp_dir + ";} 2> " + FILE_ERROR_LOG
-    execute_command(copy_log)
 
 
 def load_experiment():
@@ -163,19 +153,23 @@ def run():
         if category == "cross-program":
             directory_name = str(experiment_item[KEY_DONOR]) + "-" + str(experiment_item[KEY_TARGET])
         script_path = DIR_SCRIPT + "/" + category + "/" + directory_name
-        conf_file_path = DIR_CONF + "/" + category + "/" + directory_name + "/" + conf_file_name
+        conf_dir_path = DIR_CONF + "/" + category + "/" + directory_name + "/" + bug_name
         if category == "backporting":
             directory_name = "backport/" + str(experiment_item[KEY_DONOR])
             CONF_TOOL_PARAMS = " --backport "
-        deploy_path = CONF_DATA_PATH + "/" + directory_name + "/" + bug_name + "/"
-        deployed_conf_path = deploy_path + "/" + conf_file_name
+
+        experiment_path = CONF_DATA_PATH + "/" + directory_name + "/" + bug_name
         print("\t[META-DATA] category: " + category)
         print("\t[META-DATA] project: " + directory_name)
         print("\t[META-DATA] bug ID: " + bug_name)
-        if not os.path.isfile(deployed_conf_path):
-            setup(script_path, script_name, conf_file_path, deployed_conf_path)
+        if not os.path.exists(experiment_path):
+            setup_source(script_path, script_name)
+            deploy_path = experiment_path + "/" + os.listdir(experiment_path)[0]
+            copy_driver = "{ chmod +x " + conf_dir_path + "/* ;cp " + conf_dir_path + "/* " + deploy_path + ";} 2> " + FILE_ERROR_LOG
+            execute_command(copy_driver)
+        deploy_path = experiment_path + "/" + os.listdir(experiment_path)[0]
         if not CONF_SETUP_ONLY:
-            evaluate(deployed_conf_path, bug_name, index)
+            evaluate(deploy_path)
         index = index + 1
 
 

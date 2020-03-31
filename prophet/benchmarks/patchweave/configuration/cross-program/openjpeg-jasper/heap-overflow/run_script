@@ -1,0 +1,5 @@
+autoreconf -i
+CC=f1x-cc CXX=f1x-cxx ./configure CFLAGS='-g -O0 -fsanitize=address'
+make clean
+BUGGY_FILE=src/libjasper/jpc/jpc_mct.c
+f1x --tests=1 2 --driver=f1x-driver --test-timeout=6000 -v --disable-dteq   -f $BUGGY_FILE --build="make CFLAGS='-Wno-error -Wno-gnu-statement-expression -fsanitize=address' CXXFLAGS='-Wno-error  -Wno-gnu-statement-expression'" --enable-llvm-cov
