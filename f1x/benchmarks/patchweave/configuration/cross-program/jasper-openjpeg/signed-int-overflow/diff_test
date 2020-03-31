@@ -7,7 +7,7 @@ FUZZ_DIR_OUT=fuzz_out
 
 mkdir {pa,pb}
 autoreconf -i
-./configure CFLAGS='-g -O0 -static'
+./configure CFLAGS='-g -O0 -static -ftrapv'
 make clean
 make clean all
 git reset --hard HEAD
