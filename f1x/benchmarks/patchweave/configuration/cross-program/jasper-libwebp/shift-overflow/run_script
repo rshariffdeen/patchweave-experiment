@@ -5,5 +5,5 @@ cp f1x-driver examples/f1x-driver
 cd examples
 
 make clean
-BUGGY_FILE=jpegdec.c
+BUGGY_FILE=cwebp.c
 f1x --tests=1 2 --driver=f1x-driver --test-timeout=6000 -v --disable-dteq   -f $BUGGY_FILE --build="make CFLAGS='-Wno-error -Wno-gnu-statement-expression -pthread -fsanitize=integer' CXXFLAGS='-Wno-error  -Wno-gnu-statement-expression -pthread -fsanitize=integer'" --enable-llvm-cov
