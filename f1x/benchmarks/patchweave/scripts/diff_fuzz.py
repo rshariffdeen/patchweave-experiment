@@ -49,7 +49,8 @@ def compare_test_output(output_c, output_d):
             if program_crashed_d:
                 print(program_output_c)
                 print(program_output_d)
-                exit(1)
+                return -1
+
             else:
                 if return_code_c == return_code_d:
                     if any_runtime_error(program_output_c):
