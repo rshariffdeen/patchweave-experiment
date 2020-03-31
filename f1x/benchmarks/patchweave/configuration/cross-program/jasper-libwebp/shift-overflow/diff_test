@@ -1,18 +1,20 @@
-BUGGY_FILE=
-BINARY_PATH=
-EXPLOIT=
-POC_PATH=
+BUGGY_FILE=examples/jpegdec.c
+BINARY_PATH=examples/cwebp
+EXPLOIT="/cwebp  \$POC -o out.webp"
+POC_PATH=/tests/cross-program/openjpeg-libwebp/signed-int-overflow/1.jp2
 FUZZ_DIR_IN=fuzz_in
 FUZZ_DIR_OUT=fuzz_out
 
+
 mkdir {pa,pb}
-make clean all
-autoreconf -i
-./configure
 git reset --hard HEAD
+autoreconf -i
+CC=clang ./configure CFLAGS='-g -O0 -fsanitize=integer -static'
+make clean
+make clean all
 make -j32
 cp $BINARY_PATH pa
-mv f1x-*.patch f1x.patch
+mv examples/f1x-*.patch f1x.patch
 patch $BUGGY_FILE < f1x.patch
 make -j32
 cp $BINARY_PATH pb
