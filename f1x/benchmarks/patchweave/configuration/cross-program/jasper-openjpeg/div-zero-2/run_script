@@ -1,6 +1,9 @@
 sed -i -e "137d" libopenjpeg/opj_malloc.h
 sed -i -e "136d" libopenjpeg/opj_malloc.h
 sed -i -e "135d" libopenjpeg/opj_malloc.h
+git add libopenjpeg/opj_malloc.h
+git commit -m 'remove poison free'
+
 CC=f1x-cc CXX=f1x-cxx make CFLAGS='-fPIC';
 make clean
 rm codec/*.o
