@@ -62,7 +62,7 @@ def compileit( out_dir, compile_only = False, config_only = False, paraj = 0):
     chdir(ori_dir);
 
 if __name__=="__main__":
-        
+
     compile_only = False;
     opts, args = getopt.getopt(argv[1:],'cd:hlj:p:r:x');
     dryrun_src = "";
