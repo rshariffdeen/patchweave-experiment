@@ -22,7 +22,7 @@ def compare_test_output(output_c, output_d):
     return_code_d, program_crashed_d, program_output_d = output_d
     # print(output_c)
     # print(output_d)
-    if str(program_output_c) == str(program_output_d):
+    if str(program_output_c) == str(program_output_d) and return_code_c == 0:
         return 0
     elif return_code_c == 0:
         if return_code_d != 0:
@@ -150,6 +150,7 @@ def differential_test(file_extension, input_directory, exploit_command,
     print("\t\tTotal test: " + str(count))
     print("\t\tTotal test that passed only in Pd: " + str(fixes))
     print("\t\tTotal test that failed only in Pd: " + str(errors))
+    return fixes, errors
 
 
 def execute_command(command, show_output=True):
@@ -176,8 +177,15 @@ def generate_files(poc_path, output_directory):
 
 
 def verify_behavior():
-    file_extension = generate_files(PATH_POC, DIR_FUZZ_INPUT)
-    differential_test(file_extension, DIR_FUZZ_INPUT, EXPLOIT_COMMAND, PATH_A, PATH_B, DIR_FUZZ_OUTPUT_LOG)
+    total_errors = 0
+    total_fixes = 0
+    for i in range(0, 5):
+        file_extension = generate_files(PATH_POC, DIR_FUZZ_INPUT)
+        fixes, errors = differential_test(file_extension, DIR_FUZZ_INPUT, EXPLOIT_COMMAND, PATH_A, PATH_B, DIR_FUZZ_OUTPUT_LOG)
+        total_errors += errors
+        total_fixes += fixes
 
+    print("\t\t[summary] Average passing count " + str(total_fixes/5))
+    print("\t\t[summary] Average failing count " + str(total_errors/5))
 
 verify_behavior()
