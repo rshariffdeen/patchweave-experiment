@@ -1,0 +1,1 @@
+src/libjasper/jp2/jp2_cod.c 284 3 src/libjasper/jp2/jp2_cod.c 284 3           1000000         1               132005

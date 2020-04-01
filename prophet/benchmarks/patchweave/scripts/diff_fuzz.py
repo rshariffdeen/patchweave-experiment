@@ -27,6 +27,11 @@ def compare_test_output(output_c, output_d):
     elif return_code_c == 0:
         if return_code_d != 0:
             return -1
+        if str(program_output_c) != str(program_output_d):
+            return -1
+        else:
+            return 0
+
     else:
         if program_crashed_c:
             if program_crashed_d:
@@ -187,5 +192,6 @@ def verify_behavior():
 
     print("\t\t[summary] Average passing count " + str(total_fixes/5))
     print("\t\t[summary] Average failing count " + str(total_errors/5))
+
 
 verify_behavior()

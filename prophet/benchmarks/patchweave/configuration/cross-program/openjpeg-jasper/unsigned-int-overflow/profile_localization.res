@@ -1,0 +1,1 @@
+src/libjasper/bmp/bmp_dec.c 363 3 src/libjasper/bmp/bmp_dec.c 363 3           1000000         1               132005
