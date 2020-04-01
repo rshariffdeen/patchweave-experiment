@@ -1,7 +1,7 @@
 MAIN_DIR=$PWD
 SRC_PATH=$PWD/temp/src
 BUGGY_FILE=$SRC_PATH/src/libjasper/jpc/jpc_mct.c
-FIXED_FILE=$MAIN_DIR/__fixed_src_libjasper_jpc_jpc_dec.c
+FIXED_FILE=$MAIN_DIR/
 BINARY_PATH=$SRC_PATH/src/appl/imginfo
 EXPLOIT="/imginfo -f \$POC"
 POC_PATH=/tests/cross-program/openjpeg-jasper/heap-overflow/1.j2k

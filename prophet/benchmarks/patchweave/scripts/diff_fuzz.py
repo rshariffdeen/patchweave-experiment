@@ -24,24 +24,13 @@ def compare_test_output(output_c, output_d):
     # print(output_d)
     if str(program_output_c) == str(program_output_d):
         return 0
+    elif return_code_c == 0:
+        if return_code_d != 0:
+            return -1
     else:
         if program_crashed_c:
             if program_crashed_d:
-                if return_code_c == return_code_d:
-                    if any_runtime_error(program_output_c):
-                        if any_runtime_error(program_output_d):
-                            return 0
-                        else:
-                            return 1
-                    else:
-                        if any_runtime_error(program_output_d):
-                            return -1
-                        else:
-                            return 0
-                else:
-                    print(program_output_c)
-                    print(program_output_d)
-                    return -1
+                return -1
             else:
                 return 1
 

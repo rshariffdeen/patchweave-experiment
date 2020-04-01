@@ -1,9 +1,0 @@
-#!/bin/bash
-./src/appl/imginfo -f /tests/cross-program/openjpeg-jasper/signed-int-overflow/$1.jp2
-ret=$?
-if [[ ret -eq 1 ]]
-then
-   exit 0;
-else
-   exit $ret
-fi;
