@@ -1,7 +1,7 @@
 #!/bin/bash
 ./src/appl/imginfo -f /tests/cross-program/libwebp-jasper/shift-overflow/$1.jng 2>t
 ret=$?
-cat t | grep "mif_cod.c:394:55: runtime"
+cat t | grep "mif_cod.c:394:18: runtime"
 check=$?
 if [[ ret -eq 1 ]]
 then

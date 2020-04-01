@@ -1,0 +1,1 @@
+src/libjasper/jpc/jpc_dec.c 1233 3 src/libjasper/jpc/jpc_dec.c 1233 3           1000000         1               132005

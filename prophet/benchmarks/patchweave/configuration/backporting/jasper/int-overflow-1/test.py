@@ -55,13 +55,6 @@ if __name__ == "__main__":
             # print("timeout 12s /jasper/src/appl/imginfo -f /data/" + i + ".jp2 1>/dev/null 2>/dev/null")
             # print("timeout 12s /projects/jasper/src/appl/imginfo -f /workspace/jasper/poc/" + i + ".jp2 1>/dev/null 2>/dev/null")
             # print(i, ret)
-            with open(test_dir + "/" + i + ".err", "r") as err_file:
-                data = err_file.read().replace('\n', '')
-                special_word = "runtime error: unsigned integer overflow: "
-                # print(data)
-                if special_word in data:
-                    ret = 124
-
             if (ret == 0 or ret == 1):
                 print i,
 
