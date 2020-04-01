@@ -22,7 +22,11 @@ from os import chdir, getcwd, system, path, environ
 import subprocess
 
 if __name__ == "__main__":
-    ret = subprocess.call(["touch", "/TESTING-LIBTIFF"]);
+    system("touch /RUNING_TEST_JASPER")
+    arguments = ""
+    for arg in argv:
+        arguments += arg + " "
+    system("echo \"" + arguments + "\" >> /RUNING_TEST_JASPER")
     opts, args = getopt.getopt(argv[1:], "p:");
     profile_dir = "";
     for o, a in opts:
@@ -50,15 +54,13 @@ if __name__ == "__main__":
 
         # super hacky, because fbc itself calls *ld*, damn it fbc
         for i in ids:
-            test_cmd = "timeout 12s " + cur_dir + "/tools/tiff2ps " + test_dir + "/" + i + ".tif 1>" + test_dir + "/" + i + ".out  2>/dev/null"
             # ret = system(test_cmd)
-            ret = subprocess.call([
-                                      "timeout 12s " + cur_dir + "/tools/tiff2ps " + test_dir + "/" + i + ".tif 1>" + test_dir + "/" + i + ".out  2>" + test_dir + "/" + i + ".err"],
+            ret = subprocess.call(["timeout 12s " + cur_dir + "/src/appl/imginfo -f " + test_dir + "/" + i + ".j2k 1>" + test_dir + "/" + i + ".out  2>" + test_dir + "/" + i + ".err"],
                                   shell=True);
             # print("timeout 12s /jasper/src/appl/imginfo -f /data/" + i + ".jp2 1>/dev/null 2>/dev/null")
             # print("timeout 12s /projects/jasper/src/appl/imginfo -f /workspace/jasper/poc/" + i + ".jp2 1>/dev/null 2>/dev/null")
             # print(i, ret)
-            if (ret == 0):
+            if (ret == 0 or ret == 1):
                 print i,
 
         chdir(ori_dir)

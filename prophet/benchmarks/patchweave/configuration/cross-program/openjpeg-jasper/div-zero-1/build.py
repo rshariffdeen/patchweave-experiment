@@ -1,4 +1,21 @@
 #!/usr/bin/env python
+# Copyright (C) 2016 Fan Long, Martin Rianrd and MIT CSAIL
+# Prophet
+#
+# This file is part of Prophet.
+#
+# Prophet is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Prophet is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Prophet.  If not, see <http://www.gnu.org/licenses/>.
 from sys import argv
 from os import system, path, chdir, getcwd, environ
 from tester_common import extract_arguments
@@ -6,64 +23,60 @@ import subprocess
 import getopt
 
 
-def compileit(out_dir, compile_only=False, config_only=False, paraj=0):
+def compileit( out_dir, compile_only = False, config_only = False, paraj = 0):
     ori_dir = getcwd();
     chdir(out_dir);
 
     my_env = environ;
-    # my_env["PATH"] = deps_dir + "/apr-1.5.1-build/bin:" + my_env["PATH"];
-    # my_env["PATH"] = deps_dir + "/apr-util-1.5.3-build/bin:" + my_env["PATH"];
-    print(compile_only, config_only)
+    #my_env["PATH"] = deps_dir + "/apr-1.5.1-build/bin:" + my_env["PATH"];
+    #my_env["PATH"] = deps_dir + "/apr-util-1.5.3-build/bin:" + my_env["PATH"];
+
     if not compile_only:
         system("git clean -f -d");
-        ret = system("autoreconf -i");
+        ret = subprocess.call(["autoreconf -fvi"], shell=True, env = my_env);
         if (ret != 0):
-            print "Autoreconf failed!";
-            chdir(ori_dir);
-            exit(1);
-        # ret = subprocess.call(["./configure"]);
-        print("CONFIGURING>>>>>>>>>>>>>>>")
-        ret = system("./configure");
+                print "Autoreconf failed!";
+                chdir(ori_dir);
+                exit(1);
+        ret = subprocess.call(["./configure","--disable-fast-install","--disable-dependency-tracking"], env = my_env);
         if ret != 0:
-            print "Configure Error!";
-            chdir(ori_dir);
-            exit(1);
-        # system("make clean");
-    # exit()
+                print "Configure Error!";
+                chdir(ori_dir);
+                exit(1);
+        system("make clean");
+
     if not config_only:
         if (paraj == 0):
-            ret = system("make > /MAKELOG");
-            print("MAKE")
-
+            ret = subprocess.call(["make"], env = my_env);
         else:
-            ret = system("make -j" + str(paraj));
-        print(ret)
+            ret = subprocess.call(["make", "-j", str(paraj)], env = my_env);
         if ret != 0:
             print "Failed to make!";
             exit(1);
 
-    # ret = subprocess.call(["make", "install"], env = my_env);
-    # if ret != 0:
+    #ret = subprocess.call(["make", "install"], env = my_env);
+    #if ret != 0:
     #   print "Failed to make install!";
     #   exit(1);
 
     chdir(ori_dir);
 
-
-if __name__ == "__main__":
-    system("touch /RUNING_BUILD_LIBTIFF")
+if __name__=="__main__":
+        
+    compile_only = False;
+    system("touch /RUNING_BUILD_JASPER")
     arguments = ""
     for arg in argv:
         arguments += arg + " "
-    system("echo \"" + arguments + "\" >> /RUNING_BUILD_LIBTIFF")
-    deps_dir = getcwd() + "/libtiff-deps"
-
-    compile_only = False;
-
-    opts, args = getopt.getopt(argv[1:], 'cd:hlj:p:r:x');
+    system("echo \"" + arguments + "\" >> /RUNING_BUILD_JASPER")
+    system("echo `which cc` >> /RUNNING_BUILD_JASPER")
+    system("echo `which gcc` >> /RUNNING_BUILD_JASPER")
+    system("echo `which clang` >> /RUNNING_BUILD_JASPER")
+    opts, args = getopt.getopt(argv[1:],'cd:hlj:p:r:x');
     dryrun_src = "";
 
     paraj = 0;
+
 
     print_fix_log = False;
     print_usage = False;
