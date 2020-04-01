@@ -50,20 +50,11 @@ if __name__ == "__main__":
         # super hacky, because fbc itself calls *ld*, damn it fbc
         for i in ids:
             # ret = system(test_cmd)
-            ret = subprocess.call(["timeout 12s " + cur_dir + "/src/appl/imginfo -f " + test_dir + "/" + i + ".jp2 1>" + test_dir + "/" + i + ".out  2>" + test_dir + "/" + i + ".err"],
-                                  shell=True);
+            ret = subprocess.call(["timeout 12s " + cur_dir + "/applications/codec/j2k_to_image -i " + test_dir + "/" + i + ".jp2  -o out.bmp 1>" + test_dir + "/" + i + ".out  2>" + test_dir + "/" + i + ".err"],
+                                  shell=True)
             # print("timeout 12s /jasper/src/appl/imginfo -f /data/" + i + ".jp2 1>/dev/null 2>/dev/null")
             # print("timeout 12s /projects/jasper/src/appl/imginfo -f /workspace/jasper/poc/" + i + ".jp2 1>/dev/null 2>/dev/null")
             # print(i, ret)
-
-            with open(test_dir + "/" + i + ".err", "r") as err_file:
-                data = err_file.read().replace('\n', '')
-                special_word = "AddressSanitizer"
-                # print(data)
-                if special_word in data:
-                    ret = 124
-
-
             if (ret == 0 or ret == 1):
                 print i,
 
