@@ -22,18 +22,6 @@ from tester_common import extract_arguments
 import subprocess
 import getopt
 
-def fix_makefile_am(s):
-    f = open(s, "r");
-    lines = f.readlines();
-    f.close();
-    f = open(s, "w");
-    for line in lines:
-        if len(line) > 15:
-            if (line.find("ACLOCAL_AMFLAGS") == 0):
-                f.write("ACLOCAL_AMFLAGS = -I m4\n");
-                continue;
-        f.write(line);
-    f.close();
 
 def compileit( out_dir, compile_only = False, config_only = False, paraj = 0):
     ori_dir = getcwd();
@@ -44,15 +32,8 @@ def compileit( out_dir, compile_only = False, config_only = False, paraj = 0):
     #my_env["PATH"] = deps_dir + "/apr-util-1.5.3-build/bin:" + my_env["PATH"];
 
     if not compile_only:
-        if path.exists("Makefile.am"):
-            fix_makefile_am("Makefile.am");
         system("git clean -f -d");
-        ret = subprocess.call(["sh autogen.sh"], shell=True , env = my_env);
-        if ret != 0:
-                print "Failed to run autogen.sh!";
-                chdir(ori_dir);
-                exit(1);
-        ret = subprocess.call(["autoreconf -fvi"], shell=True, env = my_env);
+        ret = subprocess.call(["autoreconf -i"], shell=True, env = my_env);
         if (ret != 0):
                 print "Autoreconf failed!";
                 chdir(ori_dir);
