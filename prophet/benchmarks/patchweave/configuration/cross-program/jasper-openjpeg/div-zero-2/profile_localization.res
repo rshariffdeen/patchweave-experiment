@@ -1,1 +1,1 @@
-src/libjasper/jpc/jpc_dec.c 1233 3 src/libjasper/jpc/jpc_dec.c 1233 3           1000000         1               132005
+libopenjpeg/j2k.c 550 3 libopenjpeg/j2k.c 550 3           1000000         1               132005

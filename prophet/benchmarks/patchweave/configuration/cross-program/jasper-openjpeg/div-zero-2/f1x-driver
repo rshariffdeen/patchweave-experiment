@@ -1,9 +1,0 @@
-#!/bin/bash
-./codec/j2k_to_image -i /tests/cross-program/jasper-openjpeg/div-zero-2/$1.j2k -o out.bmp
-ret=$?
-if [[ ret -eq 1 ]]
-then
-   exit 0;
-else
-   exit $ret
-fi;

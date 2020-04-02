@@ -6,9 +6,9 @@ VER_MINOR = 1.2.0
 SRCS = ./libopenjpeg/bio.c ./libopenjpeg/cio.c ./libopenjpeg/dwt.c ./libopenjpeg/event.c ./libopenjpeg/image.c ./libopenjpeg/j2k.c ./libopenjpeg/j2k_lib.c ./libopenjpeg/jp2.c ./libopenjpeg/jpt.c ./libopenjpeg/mct.c ./libopenjpeg/mqc.c ./libopenjpeg/openjpeg.c ./libopenjpeg/pi.c ./libopenjpeg/raw.c ./libopenjpeg/t1.c ./libopenjpeg/t2.c ./libopenjpeg/tcd.c ./libopenjpeg/tgt.c
 INCLS = ./libopenjpeg/bio.h ./libopenjpeg/cio.h ./libopenjpeg/dwt.h ./libopenjpeg/event.h ./libopenjpeg/fix.h ./libopenjpeg/image.h ./libopenjpeg/int.h ./libopenjpeg/j2k.h ./libopenjpeg/j2k_lib.h ./libopenjpeg/jp2.h ./libopenjpeg/jpt.h ./libopenjpeg/mct.h ./libopenjpeg/mqc.h ./libopenjpeg/openjpeg.h ./libopenjpeg/pi.h ./libopenjpeg/raw.h ./libopenjpeg/t1.h ./libopenjpeg/t2.h ./libopenjpeg/tcd.h ./libopenjpeg/tgt.h ./libopenjpeg/opj_malloc.h ./libopenjpeg/opj_includes.h
 INCLUDE = -Ilibopenjpeg
-SUBDIRS = codec
+
 # General configuration variables:
-CC = gcc
+CC = clang
 AR = ar
 
 PREFIX = /usr
@@ -33,8 +33,7 @@ LIBNAME = lib$(TARGET).so.$(VER_MAJOR)
 
 default: all
 
-all: OpenJPEG $(SUBDIRS)
-
+all: OpenJPEG codec
 
 dist: OpenJPEG
 	install -d dist
@@ -46,9 +45,9 @@ dist: OpenJPEG
 dos2unix:
 	@$(DOS2UNIX) $(SRCS) $(INCLS)
 
+
 OpenJPEG: $(STATICLIB) $(SHAREDLIB)
-$(SUBDIRS):
-	$(MAKE) -C $@
+	cd codec;make
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -69,7 +68,7 @@ install: OpenJPEG
 
 clean:
 	rm -rf core dist/ u2dtmp* $(MODULES) $(STATICLIB) $(SHAREDLIB) $(LIBNAME)
-	rm -rf code/*.o
+	rm -rf codec/j2k_to_image codec/image_to_j2k
 osx:
 	make -f Makefile.osx
 
