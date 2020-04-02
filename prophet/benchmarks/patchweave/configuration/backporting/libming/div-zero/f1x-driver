@@ -1,9 +1,0 @@
-#!/bin/bash
-./util/listmp3 /tests/backporting/libming/div-zero/$1.swf
-ret=$?
-if [[ ret -eq 1 ]]
-then
-   exit 0;
-else
-   exit $ret
-fi;

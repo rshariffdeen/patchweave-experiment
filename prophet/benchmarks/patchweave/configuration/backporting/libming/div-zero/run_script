@@ -1,5 +1,3 @@
-autoreconf -i
-CC=f1x-cc CXX=f1x-cxx ./configure
-make clean
-BUGGY_FILE=util/listmp3.c
-f1x --tests=1  --driver=f1x-driver --test-timeout=6000 -v --disable-dteq   -f $BUGGY_FILE --build="make CFLAGS='-Wno-error -Wno-gnu-statement-expression -ftrapv' CXXFLAGS='-Wno-error  -Wno-gnu-statement-expression'" --enable-llvm-cov
+date
+prophet -r temp -feature-para /prophet/prophet-gpl/crawler/para-all.out  -cond-ext -replace-ext -timeout 1 prophet.conf --first-n-loc 200
+date
