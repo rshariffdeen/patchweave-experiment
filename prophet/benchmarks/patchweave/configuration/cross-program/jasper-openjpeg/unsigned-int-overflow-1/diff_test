@@ -1,21 +1,31 @@
-BUGGY_FILE=
-BINARY_PATH=
-EXPLOIT=
-POC_PATH=
+MAIN_DIR=$PWD
+SRC_PATH=$PWD/temp/src
+BUGGY_FILE=$SRC_PATH/libopenjpeg/j2k.c
+FIXED_FILE=$MAIN_DIR/__fixed_libopenjpeg_j2k.c
+BINARY_PATH=$SRC_PATH/applications/codec/j2k_to_image
+EXPLOIT="/j2k_to_image -i \$POC -o out.bmp"
+POC_PATH=/tests/cross-program/jasper-openjpeg/div-zero-1/1.j2k
 FUZZ_DIR_IN=fuzz_in
 FUZZ_DIR_OUT=fuzz_out
+PA=$PWD/pa
+PB=$PWD/pb
 
-mkdir {pa,pb}
-make clean all
-autoreconf -i
-./configure
+mkdir {$PA,$PB}
+cd $SRC_PATH
+
 git reset --hard HEAD
+autoreconf -i
+./configure CFLAGS='-g -O0 -static'
+make clean
 make -j32
-cp $BINARY_PATH pa
-mv f1x-*.patch f1x.patch
-patch $BUGGY_FILE < f1x.patch
+cp $BINARY_PATH $PA
+
+
+cp $FIXED_FILE $BUGGY_FILE
 make -j32
-cp $BINARY_PATH pb
+cp $BINARY_PATH $PB
+
+cd $MAIN_DIR
 touch diff_fuzz.log
 mkdir {$FUZZ_DIR_IN,$FUZZ_DIR_OUT}
 python3 /experiment/patchweave/scripts/diff_fuzz.py $POC_PATH $FUZZ_DIR_IN $FUZZ_DIR_OUT pa pb $EXPLOIT

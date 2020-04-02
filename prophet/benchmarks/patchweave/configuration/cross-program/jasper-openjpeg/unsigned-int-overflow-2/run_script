@@ -1,8 +1,3 @@
-sed -i -e "157d" libopenjpeg/opj_malloc.h
-sed -i -e "156d" libopenjpeg/opj_malloc.h
-sed -i -e "155d" libopenjpeg/opj_malloc.h
-autoreconf -i
-CC=f1x-cc CXX=f1x-cxx ./configure CFLAGS='-g -O0 -fsanitize=integer'
-make clean
-BUGGY_FILE=libopenjpeg/j2k.c
-f1x --tests=1 2 --driver=f1x-driver --test-timeout=6000 -v --disable-dteq   -f $BUGGY_FILE --build="make CFLAGS='-Wno-error -Wno-gnu-statement-expression -fsanitize=integer' CXXFLAGS='-Wno-error  -Wno-gnu-statement-expression'" --enable-llvm-cov
+date
+prophet -r temp -feature-para /prophet/prophet-gpl/crawler/para-all.out  -cond-ext -replace-ext -timeout 1 prophet.conf --first-n-loc 200
+date
