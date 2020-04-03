@@ -28,3 +28,4 @@ RUN cp /usr/bin/gfortran-4.8 /usr/bin/gfortran
 #build the folder structure
 RUN mkdir /home/muScalpelExperiments
 ADD muScalpel.tar.gz /muscalpel
+COPY benchmarks /experiment
