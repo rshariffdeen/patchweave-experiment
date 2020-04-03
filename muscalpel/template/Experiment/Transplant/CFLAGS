@@ -1,0 +1,1 @@
+CFLAGS = -I ../Host/cflow-1.4/gnu/ -I ../Host/cflow-1.4/src/
