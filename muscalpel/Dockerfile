@@ -30,8 +30,7 @@ RUN cp /usr/bin/gcc-4.8 /usr/bin/gcc
 RUN cp /usr/bin/g++-4.8 /usr/bin/g++
 RUN cp /usr/bin/gfortran-4.8 /usr/bin/gfortran
 
-#build the folder structure
-RUN mkdir /home/muScalpelExperiments
+
 ADD muScalpel.tar.gz /muscalpel
 COPY benchmarks /experiment
 
